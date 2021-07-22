@@ -1,0 +1,321 @@
+/* INDEX 
+1. General
+2. Login
+3. Navbar
+4. Table & Form
+5. Event
+=========== */
+/*General*/
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600&display=swap');
+
+/* Default from ant design */
+input {
+  padding: 10px 15px !important;
+}
+.mb-10 {
+  margin-bottom: 10px;
+}
+.text-center {
+  text-align: center;
+}
+.justify-end {
+  justify-content: flex-end;
+}
+.flex {
+  display: flex;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.items-center {
+  align-items: center;
+}
+
+.logo-name{
+  font-family: 'Pacifico', cursive;
+  color: #dfeaff;
+}
+.ant-layout-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #a5a5a5;
+  background: white;
+  padding: 10px 20px 20px 20px;
+  font-size: 11px;
+}
+.ant-layout-content {
+  color: #232323;
+  background: #f8f8f8;
+}
+.ant-layout {
+  background: #f8f8f8;
+}
+.base-layout,
+body {
+  min-height: 100vh;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 13px;
+}
+.App {
+  overflow-x: hidden;
+}
+.sm-text {
+  font-size: 12px;
+  line-height: 16px;
+  color: rgba(0, 0, 0, 0.45);
+}
+.text-center {
+  text-align: center;
+}
+.ant-btn {
+  padding: 7.5px 20px;
+  height: 100%;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+}
+.ant-btn svg {
+  margin-right: 5px;
+}
+.round-img {
+  border-radius: 5px;
+}
+h1,
+.h1 {
+  font-size: 28px !important;
+}
+
+/* Login */
+.loginPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-image: url('../login-bg.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 15px;
+}
+.loginPage > *:not(:first-child) {
+  margin-top: 18px;
+}
+.loginLogo {
+  width: 150px;
+}
+.loginButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background-color: white;
+  border: 1.5px solid #dcdcdc;
+  color: #262626;
+  border-radius: 5px;
+}
+.loginButton svg {
+  margin: 0 0.4em;
+}
+.loginButton:hover {
+  color: inherit;
+  background-color: inherit;
+}
+.loginCard {
+  max-width: 450px;
+  margin: 0 12.5px;
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* Navbar */
+.header {
+  height: auto !important;
+  position: fixed;
+  background-color: transparent;
+  left: 0;
+  top: 0;
+  width: 100%;
+  padding: 0;
+  z-index: 999;
+  margin-bottom: 25px;
+}
+.upperPart {
+  display: flex;
+  background-color: #001e42;
+}
+.bottomPart {
+  background-color: white;
+  border-bottom: 1px solid #f0f0f0;
+}
+.bottomPart .ant-menu-horizontal {
+  border-bottom: 0px;
+}
+.navItemContainer {
+  color: #232323 !important;
+  font-size: 12px;
+  padding: 0 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.5 !important;
+  transition: all ease-out 0.2s !important;
+  height: 45px;
+}
+.navItemContainer:hover {
+  opacity: 1 !important;
+}
+.navItemContainer.active {
+  opacity: 1 !important;
+  color: #206bc4 !important;
+  font-weight: 600;
+  border-bottom: 2px solid #206bc4;
+}
+.navItemContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.bottomPart a {
+  margin: 0px 10px;
+}
+.bottomPart a:first-child {
+  margin-left: 0px;
+}
+.bottomPart a:last-child {
+  margin-right: 0px;
+}
+.navItemContent > *:not(:first-child) {
+  margin-left: 6px;
+}
+.signoutLogo {
+  margin-right: 3px;
+}
+.signoutButton {
+  display: flex;
+  flex-direction: center;
+  align-items: center;
+  background-color: #003574;
+  border: 0px;
+  border-radius: 50px;
+  padding: 7.5px 25px;
+  font-size: 12px;
+  height: auto;
+}
+.signoutButton svg {
+  margin-right: 10px;
+}
+.signoutButton:hover,
+.signoutButton:active {
+  background-color: #051221;
+  border: 0px;
+}
+
+/* Table & Form*/
+.ant-table {
+  overflow: auto;
+  font-size: 13px;
+}
+.ant-table p {
+  margin-bottom: 0px;
+}
+.ant-table-column-title {
+  font-weight: 600;
+  color: #656565;
+}
+.ant-table-thead > tr > th,
+.ant-table-tbody > tr > td,
+.ant-table tfoot > tr > th,
+.ant-table tfoot > tr > td {
+  padding: 10px;
+}
+.ant-pagination-item {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 12px;
+  margin-right: 5px;
+}
+.search-bar {
+  margin-bottom: 10px;
+}
+.search-bar .ant-input-group input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #f0f0f0;
+  font-size: 12px;
+}
+.search-bar .ant-input-group .ant-btn {
+  border-radius: 0 5px 5px 0 !important;
+  border: 0px;
+  background-color: #dfeaff;
+}
+.search-bar .ant-input-group .ant-btn svg {
+  margin: 0px;
+  width: 20px;
+  color: #206bc4;
+}
+
+/* Event */
+.event-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.event-section-main b {
+  color: #656565;
+}
+.event-section-main p a {
+  font-size: 1em;
+}
+.button-table-wrapper {
+  display: flex;
+  align-items: center;
+}
+.event-action {
+  margin-right: 2.5px;
+  border-radius: 2.5px;
+  border: none;
+  font-weight: bold;
+  font-size: 10px;
+  width: auto;
+  margin-bottom: 5px;
+  padding: 7.5px 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.event-action .ant-btn:last-child {
+  margin-right: 0px;
+}
+.event-action svg {
+  margin-right: 0px !important;
+}
+.event-edit.ant-btn-primary {
+  background-color: #e8fbff;
+  color: #206bc4;
+}
+.event-delete.ant-btn-primary {
+  background-color: #ffeaef;
+  color: #dd0000;
+}
+.event-publish.ant-btn-primary {
+  background-color: #9cbc1a;
+  color: #fff;
+}
+.event-unpublish.ant-btn-primary {
+  background-color: #dd0000;
+  color: #fff;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.input-error {
+  border: 1px solid red;
+}
+
+.text-red {
+  color: red;
+}
