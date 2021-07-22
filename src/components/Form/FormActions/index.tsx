@@ -1,6 +1,7 @@
 import { Button, Col, Row, Space } from 'antd';
 import React, { FC } from 'react';
-import { FiSend, FiXCircle } from 'react-icons/fi';
+import { FiSend } from 'react-icons/fi';
+import { MdCancel } from 'react-icons/md';
 
 /**
  * Form actions properties
@@ -21,7 +22,7 @@ const FormActions: FC<FormActionsProps> = ({ onSubmit, onCancel }) => {
       }}
     >
       <Col span={12} className="flex ">
-        <Button danger type="primary" className="" icon={<FiXCircle />} onClick={() => onCancel()}>
+        <Button className="" icon={<MdCancel />} onClick={() => onCancel()}>
           Cancel
         </Button>
       </Col>

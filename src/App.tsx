@@ -14,7 +14,6 @@ const App: React.FC = () => {
       <Route key={idx} path={entry.path} component={entry.component} exact={entry.exact} />
     ));
   };
-  console.log(route.length);
   return (
     <div className="App">
       <Router>
