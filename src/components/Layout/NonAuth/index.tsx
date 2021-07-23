@@ -9,7 +9,7 @@ type Props = {
   children?: JSX.Element | JSX.Element[];
 };
 
-const Auth: React.FC<Props> = ({ children }) => {
+const NonAuth: React.FC<Props> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
 
@@ -42,4 +42,4 @@ const Auth: React.FC<Props> = ({ children }) => {
   return <>{children}</>;
 };
 
-export default Auth;
+export default NonAuth;

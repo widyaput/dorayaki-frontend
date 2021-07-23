@@ -1,9 +1,10 @@
 
 import AddDorayaki from '@/pages/AddDorayaki';
-import Dorayaki from '@/pages/Dorayaki';
+import ViewDorayaki from '@/pages/ViewDorayaki';
 import EditDorayaki from '@/pages/EditDorayaki';
 import Home from '@/pages/Home';
 import Login from '@/pages/Login';
+import Dorayaki from '@/pages/Dorayaki';
 
 export const route = [
   {
@@ -20,11 +21,16 @@ export const route = [
     exact: true,
   }, {
     path: '/dorayakis/:id',
-    component: Dorayaki,
+    component: ViewDorayaki,
     exact: true,
   },{
     path: '/',
     component: Home,
     exact: true,
-  }, 
+  },
+  {
+    path: '/dorayakis',
+    component: Dorayaki,
+    exact: true,
+  }
 ];

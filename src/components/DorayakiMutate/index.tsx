@@ -48,8 +48,18 @@ const DorayakiMutate: React.FC<Props> = (props: Props) => {
     return isJpgOrPngOrJpeg&&isLt2M;
   };
 
-  const handleChange = () => {
+  const handleChange = async () => {
     setLoading(true);
+    if (uploadedImgURL !== '' && uploadedImgURL !== dorayakiValue.ImgURL) {
+      const nameFile = uploadedImgURL.replace(`${DEFAULT_API_PREFIX}/files/`, '');
+      try {
+        await axios.delete(`/images/${nameFile}`, {
+          withCredentials: true
+        })
+      } catch (e) {
+        console.error(e);
+      }
+    }
   }
 
   const handleRemove= async () => {
@@ -80,16 +90,16 @@ const DorayakiMutate: React.FC<Props> = (props: Props) => {
       return;
     }
     if (!dorayakiValue.isAdd) {
-      if (uploadedImgURL !== dorayakiValue.ImgURL && dorayakiValue.ImgURL !== ''){
-        const nameFile = dorayakiValue.ImgURL.replace(`${DEFAULT_API_PREFIX}/files/`, '');
-        try {
-          await axios.delete(`/images/${nameFile}`, {
-            withCredentials: true
-          })
-        } catch (e) {
-          console.error(e);
-        }
-      }
+      // if (uploadedImgURL !== dorayakiValue.ImgURL && dorayakiValue.ImgURL !== ''){
+      //   const nameFile = dorayakiValue.ImgURL.replace(`${DEFAULT_API_PREFIX}/files/`, '');
+      //   try {
+      //     await axios.delete(`/images/${nameFile}`, {
+      //       withCredentials: true
+      //     })
+      //   } catch (e) {
+      //     console.error(e);
+      //   }
+      // }
       try {
         const res = await axios.put(`/dorayakis/${dorayakiValue.ID}`, {
           rasa: uploadedRasa,
@@ -100,7 +110,7 @@ const DorayakiMutate: React.FC<Props> = (props: Props) => {
         })
         if (res.status === 200) {
           message.success(`Dorayaki is edited`)
-          window.location.href ='/dorayakis';
+          window.location.href = `/dorayakis/${dorayakiValue.ID}`;
         }
         return;
       } catch (e) {
@@ -118,7 +128,7 @@ const DorayakiMutate: React.FC<Props> = (props: Props) => {
       })
       if (res.status === 201) {
         message.success('Dorayaki is added')
-        window.location.href = '/dorayakis'
+        window.location.href = `/dorayakis/${res.data.data[0].id}`
       }
       return
     } catch (e) {
@@ -135,7 +145,7 @@ const DorayakiMutate: React.FC<Props> = (props: Props) => {
           withCredentials: true,
         })
         if (res.status === 200) {
-          window.location.href = '/dorayakis'
+          window.location.href = props.isAdd ? '/dorayakis' : `/dorayakis/${props.ID}`
         }
         setUploadedImgURL('');
         return;
@@ -144,7 +154,7 @@ const DorayakiMutate: React.FC<Props> = (props: Props) => {
         return;
       }
     }
-    window.location.href = '/dorayakis'
+    window.location.href = props.isAdd ? '/dorayakis' : `/dorayakis/${props.ID}`
   }
 
   const customUploadImage = async (options: any) => {
@@ -181,7 +191,7 @@ const DorayakiMutate: React.FC<Props> = (props: Props) => {
         </Typography.Title>
         <Form layout="vertical" form={form}>
           <Row gutter={12}>
-            <Col span={12}>
+            <Col xs={16} sm={12}>
               <label className="ant-form-item-label">
                 <span className="text-red">*</span>Image
               </label>
@@ -200,6 +210,7 @@ const DorayakiMutate: React.FC<Props> = (props: Props) => {
                       <Image
                       src={uploadedImgURL}
                       alt="dorayaki-img"
+                      className="img-thumbnail"
                       style={{maxWidth: '100%', height: 'auto'}} preview={false}/>
                     ): uploadButton}
                 </Dragger>
@@ -212,7 +223,7 @@ const DorayakiMutate: React.FC<Props> = (props: Props) => {
                 }
               </div>    
             </Col>
-            <Col span={12}>
+            <Col span={12} xxl={8}>
               <Form.Item
               label="Flavor"
               name="rasa"

@@ -21,12 +21,12 @@ const FormActions: FC<FormActionsProps> = ({ onSubmit, onCancel }) => {
         marginTop: '20px'
       }}
     >
-      <Col span={12} className="flex ">
+      <Col xs={16} span={12} className="flex ">
         <Button className="" icon={<MdCancel />} onClick={() => onCancel()}>
           Cancel
         </Button>
       </Col>
-      <Col span={12} className="flex justify-end">
+      <Col span={12} className="flex submit-edit-btn">
         <Space>
           <Button type="primary" className="" icon={<FiSend />} onClick={() => onSubmit()}>
             Submit

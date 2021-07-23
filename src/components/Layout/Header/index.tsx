@@ -37,10 +37,9 @@ const LayoutHeader: React.FC = () => {
         <Container className="flex justify-between items-center">
           <div>
             <img src="/images/dorayaki-603502.png"
-            className="image-layout"
-            style={{height: 'auto', width: '10%', float:'left', paddingTop: '10px'}}
+            className="logo-image"
             alt="Logo" />
-            <h1 className="logo-name" style={{paddingTop:'5px'}}>WeeDorayaki</h1>
+            <h1 className="logo-name">WeeDorayaki</h1>
           </div>
           <Button className="signoutButton" type="primary" onClick={handleSignOut}>
             <FiLogOut className="signoutLogo" />
