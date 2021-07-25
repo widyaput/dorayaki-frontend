@@ -8,9 +8,9 @@ const AddDorayaki: React.FC = () => {
   return (
     <AuthLayout>
       <Helmet>
-        <title>WeeDorayaki | Add dorayaki</title>
-        </Helmet>
-        <DorayakiMutate isAdd={true} ID={0} Rasa="" Desc="" ImgURL=""></DorayakiMutate>
+        <title>WeeDorayaki | Add Dorayaki</title>
+      </Helmet>
+      <DorayakiMutate isAdd={true} ID={0} Rasa="" Desc="" ImgURL=""></DorayakiMutate>
     </AuthLayout>
   )
 }

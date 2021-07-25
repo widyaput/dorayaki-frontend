@@ -13,15 +13,14 @@ interface IResponseData {
     data: [];
 }
 
-export const tableResponse = (response : { data : IResponseData }) : any => {
-  if(!response) return [];
+export const tableResponse = (data : IResponseData) : any => {
+  if(!data) return [];
 
-  const { data } = response;
   const pagination : IPagination = {
     current: data.page_index,
     pageSize: data.items_per_page,
     total: data.total_items,
   }
 
-  return { tableData: data, pagination }
+  return { tableData: data.data, pagination }
 }

@@ -90,16 +90,6 @@ const DorayakiMutate: React.FC<Props> = (props: Props) => {
       return;
     }
     if (!dorayakiValue.isAdd) {
-      // if (uploadedImgURL !== dorayakiValue.ImgURL && dorayakiValue.ImgURL !== ''){
-      //   const nameFile = dorayakiValue.ImgURL.replace(`${DEFAULT_API_PREFIX}/files/`, '');
-      //   try {
-      //     await axios.delete(`/images/${nameFile}`, {
-      //       withCredentials: true
-      //     })
-      //   } catch (e) {
-      //     console.error(e);
-      //   }
-      // }
       try {
         const res = await axios.put(`/dorayakis/${dorayakiValue.ID}`, {
           rasa: uploadedRasa,
@@ -107,9 +97,9 @@ const DorayakiMutate: React.FC<Props> = (props: Props) => {
           image_url: uploadedImgURL
         }, {
           withCredentials: true
-        })
+        });
         if (res.status === 200) {
-          message.success(`Dorayaki is edited`)
+          message.success(`Dorayaki is edited`);
           window.location.href = `/dorayakis/${dorayakiValue.ID}`;
         }
         return;
@@ -130,7 +120,7 @@ const DorayakiMutate: React.FC<Props> = (props: Props) => {
         message.success('Dorayaki is added')
         window.location.href = `/dorayakis/${res.data.data[0].id}`
       }
-      return
+      return;
     } catch (e) {
       console.error(e);
       return;
@@ -247,7 +237,7 @@ const DorayakiMutate: React.FC<Props> = (props: Props) => {
                 value={uploadedDesc}
                 name="deskripsi"
                 onChange={(e: any) => setUDesc(e.target.value)}
-                rows= {5}
+                autoSize={{minRows: 3, maxRows: 7}}
               />
               </Form.Item>
             </Col>

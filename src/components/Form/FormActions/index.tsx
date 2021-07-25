@@ -1,4 +1,4 @@
-import { Button, Col, Row, Space } from 'antd';
+import { Button, Col, Row } from 'antd';
 import React, { FC } from 'react';
 import { FiSend } from 'react-icons/fi';
 import { MdCancel } from 'react-icons/md';
@@ -21,17 +21,15 @@ const FormActions: FC<FormActionsProps> = ({ onSubmit, onCancel }) => {
         marginTop: '20px'
       }}
     >
-      <Col xs={16} span={12} className="flex ">
+      <Col xs={13} sm={12} className="flex ">
         <Button className="" icon={<MdCancel />} onClick={() => onCancel()}>
           Cancel
         </Button>
       </Col>
       <Col span={12} className="flex submit-edit-btn">
-        <Space>
-          <Button type="primary" className="" icon={<FiSend />} onClick={() => onSubmit()}>
-            Submit
-          </Button>
-        </Space>
+        <Button type="primary" className="" icon={<FiSend />} onClick={() => onSubmit()}>
+          Submit
+        </Button>
       </Col>
     </Row>
   );

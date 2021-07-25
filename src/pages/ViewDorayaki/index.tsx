@@ -25,7 +25,7 @@ const Dorayaki: React.FC = () => {
   return (
     <AuthLayout>
       <Helmet>
-        <title>WeeDorayaki | View dorayaki</title>
+        <title>WeeDorayaki | View Dorayaki</title>
         </Helmet>
         <div>
         {error && <Alert message={error.message} type="error" />}

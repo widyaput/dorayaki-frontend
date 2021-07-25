@@ -5,6 +5,7 @@ export interface IUseSearch {
   setSearch: React.Dispatch<React.SetStateAction<string>>;
 }
 
+
 export const useSearch = () : IUseSearch => {
   const [search, setSearch] = useState('');
 

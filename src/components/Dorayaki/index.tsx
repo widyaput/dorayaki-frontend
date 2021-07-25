@@ -1,8 +1,5 @@
 import React from 'react';
-import { Typography, Row, Col, Image, Button, Space, Popconfirm } from 'antd';
-import { BiArrowBack } from 'react-icons/bi';
-import { RiDeleteBin6Line, RiEditLine } from 'react-icons/ri';
-
+import { Typography, Row, Col, Image } from 'antd';
 import axios from '@/modules/axios';
 import ViewActions from '../View/ViewActions';
 
@@ -17,7 +14,6 @@ interface Props {
 const DorayakiView: React.FC<Props> = (props: Props) => {
   const handleDelete = async () => {
     try {
-      console.log('HI dari delete');
       await axios.delete(`/dorayakis/${props.ID}`, {withCredentials: true});
       window.location.href ='/dorayakis';
     } catch (e) {
