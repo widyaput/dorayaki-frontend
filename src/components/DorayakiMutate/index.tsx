@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 // import { useHistory } from 'react-router';
-import { Upload, message, Typography, Form, Row, Col, Input, Image } from 'antd';
+import { Upload, message, Typography, Form, Row, Col, Input, Image, Button } from 'antd';
 import { LoadingOutlined, PlusOutlined} from '@ant-design/icons'
 import { RcFile} from 'antd/lib/upload';
 
@@ -9,64 +9,61 @@ import axios from '@/modules/axios';
 import { useEffect } from 'react';
 import { DEFAULT_API_PREFIX } from '@/config/default';
 import FormActions from '@/components/Form/FormActions';
+import { AiOutlineDelete } from 'react-icons/ai';
 
 const { Dragger } = Upload;
 
 interface Props {
   ID: number;
   isAdd: boolean;
+  Rasa: string;
+  Desc: string;
+  ImgURL: string;
 }
 
 const DorayakiMutate: React.FC<Props> = (props: Props) => {
   const [form] = Form.useForm();
-
-  const [Rasa, setRasa] = useState('');
-  const [Desc, setDesc] = useState('');
-  const [ImgURL, setImgUrl] = useState('');
-  const [uploadedImgURL, setUploadedImgURL] = useState('');
-  const [uploadedRasa, setURasa] = useState('');
-  const [uploadedDesc, setUDesc] = useState('');
   const [loading, setLoading] = useState(false);
-
-  useEffect(()=> {
-    (async () => {
-      if (!props.isAdd) {
-        try {
-          const res = await axios.get(`/dorayakis/${props.ID}`);
-          if (res.status===200){
-            const { data } = res;
-            setRasa(data.data.rasa);
-            setDesc(data.data.deskripsi);
-            setImgUrl(data.data.image_url);
-          }
-        } catch (error) {
-          return (<h1>404</h1>);
-        }
-      }
-    })();
-  }, []);
-
+  const [dorayakiValue, setDorayaki] = useState<Props>({
+    ID: props.ID,
+    Rasa: props.Rasa,
+    Desc: props.Desc,
+    ImgURL: props.ImgURL,
+    isAdd: props.isAdd
+  })
+  const [uploadedImgURL, setUploadedImgURL] = useState(dorayakiValue.ImgURL);
+  const [uploadedRasa, setURasa] = useState(dorayakiValue.Rasa);
+  const [uploadedDesc, setUDesc] = useState(dorayakiValue.Desc);
+  
   useEffect(() => {
-    setUploadedImgURL(ImgURL);
-    setUDesc(Desc);
-    setURasa(Rasa);
-  }, [ImgURL, Rasa, Desc])
+    setDorayaki(props);
+  }, [props]);
 
   const beforeUpload = (file: RcFile) => {
     const isJpgOrPngOrJpeg = file.type === 'image/jpeg'
       || file.type === 'image/png' || file.type === 'image/jpg';
-    if (!isJpgOrPngOrJpeg) message.error('You can only upload JPG/PNG file!');
+    if (!isJpgOrPngOrJpeg) message.error('You can only upload JPG/PNG/JPEG file!');
     const isLt2M =file.size / 1024 / 1024 < 2;
     if (!isLt2M) message.error('Image must be smaller than 2MB');
     return isJpgOrPngOrJpeg&&isLt2M;
   };
 
-  const handleChange = () => {
+  const handleChange = async () => {
     setLoading(true);
+    if (uploadedImgURL !== '' && uploadedImgURL !== dorayakiValue.ImgURL) {
+      const nameFile = uploadedImgURL.replace(`${DEFAULT_API_PREFIX}/files/`, '');
+      try {
+        await axios.delete(`/images/${nameFile}`, {
+          withCredentials: true
+        })
+      } catch (e) {
+        console.error(e);
+      }
+    }
   }
 
   const handleRemove= async () => {
-    if (props.isAdd || uploadedImgURL !== ImgURL) {
+    if (dorayakiValue.isAdd || uploadedImgURL !== dorayakiValue.ImgURL) {
       const nameFile = uploadedImgURL.replace(`${DEFAULT_API_PREFIX}/files/`, '');
       try {
         const res = await axios.delete(`/images/${nameFile}`, {
@@ -88,28 +85,22 @@ const DorayakiMutate: React.FC<Props> = (props: Props) => {
   }
 
   const handleSubmit = async () => {
-    if (!props.isAdd) {
-      if (uploadedImgURL !== ImgURL){
-        const nameFile = ImgURL.replace(`${DEFAULT_API_PREFIX}/files/`, '');
-        try {
-          await axios.delete(`/images/${nameFile}`, {
-            withCredentials: true
-          })
-        } catch (e) {
-          console.error(e);
-        }
-      }
+    if (uploadedImgURL === '') {
+      message.error('Dorayaki must have an image');
+      return;
+    }
+    if (!dorayakiValue.isAdd) {
       try {
-        const res = await axios.put(`/dorayakis/${props.ID}`, {
+        const res = await axios.put(`/dorayakis/${dorayakiValue.ID}`, {
           rasa: uploadedRasa,
           deskripsi: uploadedDesc,
           image_url: uploadedImgURL
         }, {
           withCredentials: true
-        })
+        });
         if (res.status === 200) {
-          message.success(`Edit dorayaki berhasil`)
-          window.location.href ='/dorayakis';
+          message.success(`Dorayaki is edited`);
+          window.location.href = `/dorayakis/${dorayakiValue.ID}`;
         }
         return;
       } catch (e) {
@@ -126,10 +117,10 @@ const DorayakiMutate: React.FC<Props> = (props: Props) => {
         withCredentials: true
       })
       if (res.status === 201) {
-        message.success('Tambah dorayaki berhasil')
-        window.location.href = '/dorayakis'
+        message.success('Dorayaki is added')
+        window.location.href = `/dorayakis/${res.data.data[0].id}`
       }
-      return
+      return;
     } catch (e) {
       console.error(e);
       return;
@@ -137,14 +128,14 @@ const DorayakiMutate: React.FC<Props> = (props: Props) => {
   }
 
   const handleCancel = async () => {
-    if (uploadedImgURL !== ImgURL && uploadedImgURL !== ''){
+    if (uploadedImgURL !== dorayakiValue.ImgURL && uploadedImgURL !== ''){
       const nameFile = uploadedImgURL.replace(`${DEFAULT_API_PREFIX}/files/`, '');
       try {
         const res = await axios.delete(`/images/${nameFile}`, {
           withCredentials: true,
         })
         if (res.status === 200) {
-          window.location.href = '/dorayakis'
+          window.location.href = props.isAdd ? '/dorayakis' : `/dorayakis/${props.ID}`
         }
         setUploadedImgURL('');
         return;
@@ -153,7 +144,7 @@ const DorayakiMutate: React.FC<Props> = (props: Props) => {
         return;
       }
     }
-    window.location.href = '/dorayakis'
+    window.location.href = props.isAdd ? '/dorayakis' : `/dorayakis/${props.ID}`
   }
 
   const customUploadImage = async (options: any) => {
@@ -161,7 +152,7 @@ const DorayakiMutate: React.FC<Props> = (props: Props) => {
     const formData = new FormData();
     formData.append("uploadFile", file);
     if (file !== null){
-      // const uploadURL = props.isAdd ? '/uploads' : `dorayakis/${props.ID}/upload`;
+      // const uploadURL = dorayakiValue.isAdd ? '/uploads' : `dorayakis/${dorayakiValue.ID}/upload`;
       try {
         const res = await axios.post('/uploads', formData, {headers:{
           'Content-Type': 'multipart/form-data'
@@ -183,21 +174,24 @@ const DorayakiMutate: React.FC<Props> = (props: Props) => {
 
   return (
     <>
-      <div className="dorayaki-container">
-        <Typography.Title level={1}>
-          {' '}
-          {props.isAdd ? 'Add New' : 'Edit'} Dorayaki
-        </Typography.Title>
-        <Form className="dorayaki-content" layout="vertical" form={form}>
+      <div>
+        <section className="flex justify-between mb-10">
+          <Typography.Title level={1}>
+            {' '}
+            {dorayakiValue.isAdd ? 'Add New' : 'Edit'} Dorayaki
+          </Typography.Title>
+        </section>
+        <Form layout="vertical" form={form}>
           <Row gutter={12}>
-            <Col span={12}>
-              <label className="ant-form-item-label"> Gambar</label>
-              <div className="dorayaki-drop-container">
+            <Col xs={16} sm={12}>
+              <label className="ant-form-item-label">
+                <span className="text-red">*</span>Image
+              </label>
+              <div>
                 <Dragger
-                  className="dropzone-container"
                   name="uploadFile"
                   beforeUpload={beforeUpload}
-                  showUploadList={{showRemoveIcon: true, showPreviewIcon:false}}
+                  showUploadList={false}
                   maxCount={1}
                   listType="picture"
                   onChange={handleChange}
@@ -207,18 +201,26 @@ const DorayakiMutate: React.FC<Props> = (props: Props) => {
                     {uploadedImgURL !== '' ? (
                       <Image
                       src={uploadedImgURL}
-                      alt="foto-dorayaki"
-                      style={{width: '100%'}} preview={false}/>
+                      alt="dorayaki-img"
+                      className="img-thumbnail"
+                      style={{maxWidth: '100%', height: 'auto'}} preview={false}/>
                     ): uploadButton}
                 </Dragger>
+                {uploadedImgURL !== '' &&
+                  (<Button type="primary" className="event-action event-delete" style={{float: 'right'}}
+                    onClick={handleRemove}
+                    >
+                      <AiOutlineDelete size={22}/>
+                    </Button>)
+                }
               </div>    
             </Col>
-            <Col span={12}>
+            <Col span={12} xxl={8}>
               <Form.Item
-              label="Rasa"
+              label="Flavor"
               name="rasa"
-              rules={[{required: true, message: 'Rasa dorayaki tidak boleh kosong'}]}
-              initialValue={Rasa}
+              rules={[{required: true, message: `Dorayaki's flavor cannot be empty`}]}
+              initialValue={dorayakiValue.Rasa}
               >
                 <Input 
                 value={uploadedRasa}
@@ -228,16 +230,16 @@ const DorayakiMutate: React.FC<Props> = (props: Props) => {
               />
               </Form.Item>
               <Form.Item
-              label="Deskripsi"
+              label="Description"
               name="deskripsi"
-              rules={[{required: true, message: 'Deskripsi dorayaki tidak boleh kosong'}]}
-              initialValue={Desc}
+              rules={[{required: true, message: `Dorayaki's description cannot be empty`}]}
+              initialValue={dorayakiValue.Desc}
               >
                 <Input.TextArea
                 value={uploadedDesc}
                 name="deskripsi"
                 onChange={(e: any) => setUDesc(e.target.value)}
-                rows= {5}
+                autoSize={{minRows: 3, maxRows: 7}}
               />
               </Form.Item>
             </Col>

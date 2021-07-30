@@ -6,6 +6,7 @@ import axios from 'axios';
 
 import NonAuthLayout from '@/components/Layout/NonAuth';
 import { DEFAULT_AUTH_ADMIN } from '@/config/default';
+import Logo from '@/assets/images/dorayaki.ico'
 
 const LoginPage: React.FC = () => {
   const [form] = Form.useForm();
@@ -34,14 +35,14 @@ const LoginPage: React.FC = () => {
       <div className="loginPage">
         {error && <Alert message="Error" description={error} type="error" showIcon closable />}
 
-        <img src="/images/hoobex-office-login.svg" className="loginLogo" />
+        <img src={Logo} className="loginLogo" />
         <Card className="loginCard" bordered={false}>
           <PageHeader>
             <Typography.Title level={5} style={{textAlign: 'center'}}>
               Login to your account
             </Typography.Title>
             {!isError && <p className="sm-text text-center">
-              Please use your registered Credentials.
+              Please use your registered credentials.
             </p>}
             {isError && <p className="sm-text text-center" style={{color: 'red'}}>Invalid credentials</p>}
             <Form form={form} layout="vertical" onFinish={onFinish}>

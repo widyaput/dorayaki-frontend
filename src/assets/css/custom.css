@@ -7,7 +7,7 @@
 =========== */
 /*General*/
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 /* Default from ant design */
 input {
   padding: 10px 15px !important;
@@ -34,7 +34,16 @@ input {
 .logo-name{
   font-family: 'Pacifico', cursive;
   color: #dfeaff;
+  padding-top: 5px;
 }
+
+.logo-image{
+  height: auto;
+  width: 10%;
+  float: left;
+  padding-top: 10px;
+}
+
 .ant-layout-footer {
   display: flex;
   align-items: center;
@@ -81,6 +90,15 @@ body {
 }
 .round-img {
   border-radius: 5px;
+}
+.img-thumbnail {
+  width: 200px;
+  height: 100px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  background-color: #e3e3e3;
 }
 h1,
 .h1 {
@@ -129,6 +147,11 @@ h1,
   width: 100%;
   border-radius: 10px;
 }
+
+.submit-edit-btn {
+  justify-content: flex-end;
+}
+
 
 /* Navbar */
 .header {
@@ -239,6 +262,9 @@ h1,
 .search-bar {
   margin-bottom: 10px;
 }
+
+.search-bar .ant-select-
+
 .search-bar .ant-input-group input {
   padding: 10px;
   border-radius: 5px;
@@ -291,6 +317,29 @@ h1,
 .event-action svg {
   margin-right: 0px !important;
 }
+
+div.c-wrapper{
+  width: 80%;
+  margin: auto;
+}
+
+.carousel-inner > .item > img, 
+.carousel-inner > .item > a > img{
+  margin: auto;
+  width: 200px;
+  height: 100px;
+}
+
+.pgdorayaki-details.ant-btn-primary {
+  background-color: #9cbc1a;
+  color: #fff;
+}
+
+.pgdorayaki-transfer.ant-btn-primary {
+  background-color: #1a9cbc;
+  color: #fff;
+}
+
 .event-edit.ant-btn-primary {
   background-color: #e8fbff;
   color: #206bc4;
@@ -318,4 +367,72 @@ h1,
 
 .text-red {
   color: red;
+}
+
+.list-section-main b {
+  color: #a5a5a5;
+}
+.list-section-main p a {
+  font-size: 1em;
+}
+
+.modal-form {
+  margin-bottom: 10px;
+}
+.modal-form .ant-modal-title {
+  font-weight: 600;
+}
+.modal-form .ant-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.modal-form .ant-select.ant-select-single.ant-select-show-arrow {
+  width: 100%;
+}
+
+.modal-label {
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+@media (min-width: 768px) and (max-width: 900px) {
+  .container {
+    width: 100%;
+    margin: 0;
+    padding: 0 25px;
+  }
+}
+@media (max-width: 767px) {
+  .container {
+    margin: 0;
+    padding: 0 12.5px;
+    width: 100%;
+  }
+  .bottomPart a {
+    margin: 0px !important;
+  }
+}
+
+/* @media (min-width: 577px) and (max-width: 577px) {
+  .submit-edit-btn {
+    justify-content: first baseline;
+  }
+} */
+
+@media (max-width: 690px) {
+  .submit-edit-btn {
+    justify-content: flex-start;
+  }
+  .logo-image{
+    display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .logo-name{
+    font-family: 'Pacifico', cursive;
+    color: #dfeaff;
+    padding-top: 5px;
+  }
 }
