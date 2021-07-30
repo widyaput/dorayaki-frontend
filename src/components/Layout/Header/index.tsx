@@ -10,6 +10,7 @@ import { headerHeight, headerUpperPartHeight } from '@/config/size';
 import routes from './routes';
 import axios from '@/modules/axios';
 import { DEFAULT_API_PREFIX } from '@/config/default';
+import Logo from '@/assets/images/dorayaki-603502.png';
 
 const LayoutHeader: React.FC = () => {
   const history = useHistory();
@@ -36,7 +37,7 @@ const LayoutHeader: React.FC = () => {
       >
         <Container className="flex justify-between items-center">
           <div>
-            <img src="/images/dorayaki-603502.png"
+            <img src={Logo}
             className="logo-image"
             alt="Logo" />
             <h1 className="logo-name">WeeDorayaki</h1>
