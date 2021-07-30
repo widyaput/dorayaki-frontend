@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import { Button, Card, Form, Typography, PageHeader, Alert, Input } from 'antd';
 import { useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import axios from 'axios';
 
+import axios from '@/modules/axios';
 import NonAuthLayout from '@/components/Layout/NonAuth';
-import { DEFAULT_AUTH_ADMIN } from '@/config/default';
 import Logo from '@/assets/images/dorayaki.ico'
 
 const LoginPage: React.FC = () => {
@@ -17,7 +16,7 @@ const LoginPage: React.FC = () => {
   const error = new URLSearchParams(useLocation().search).get('error');
   const onFinish = async (values: {username: string, password: string}) => {
     try {
-      const res = await axios.post(DEFAULT_AUTH_ADMIN, values, {withCredentials: true});
+      const res = await axios.post('/signin', values, {withCredentials: true});
       if (res.status === 200) {
         window.location.href = '/'
         return

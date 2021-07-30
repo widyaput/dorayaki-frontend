@@ -3,7 +3,7 @@ export const DEFAULT_IMAGE_URL =
   '/images/default-img.png';
 export const DEFAULT_DATE_FORMAT = 'dd MMMM yyyy hh:mm';
 
-const urlPrefix = 'https://api.dorayaki.wiwid.me/';
+const urlPrefix = 'http://api.dorayaki.wiwid.me';
 
 export const DEFAULT_AUTH_ADMIN = `${urlPrefix}/api/v1/signin`;
 export const DEFAULT_API_PREFIX = `${urlPrefix}/api/v1`;

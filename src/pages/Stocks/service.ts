@@ -24,9 +24,10 @@ export const getStock = (
   })
 
   let key = `/shops/${idShop}/stocks?${params.toString()}`;
-  for (let param of sortParams) {
-    key += `&sort=${(param.order === 'descend' ? '-' : '')+param.field}`
-  }
+  // for (let param of sortParams) {
+  //   key += `&sort=${(param.order === 'descend' ? '-' : '')+param.field}`
+  // }
+  Object.values(sortParams).map((param) => key += `&sort=${(param.order === 'descend' ? '-' : '')+param.field}`)
   const fetcher = async () => {
     const response = await instance.get(key);
     return response.data;

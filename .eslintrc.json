@@ -22,6 +22,7 @@
     ],
     "rules": {
       "no-undef": "off",
+      "prefer-const": "off",
 
     // We're using TypeScript, so prop-types aren't so interesting
     "react/prop-types": "off",

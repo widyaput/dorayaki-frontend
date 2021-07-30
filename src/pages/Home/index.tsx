@@ -9,7 +9,6 @@ import { Typography } from 'antd';
 const Home: React.FC = () => {
   const { key, fetcher } = getUser();
   const { data, error } = swr(key, fetcher);
-  if (data) console.log(data);
   return (
     <AuthLayout>
       <Helmet>
