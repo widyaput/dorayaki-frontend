@@ -23,10 +23,12 @@ const DorayakiView: React.FC<Props> = (props: Props) => {
   
   return (<>
     <div>
-      <Typography.Title level={1}>
-        {' '}
-        View Dorayaki
-      </Typography.Title>
+      <section className="flex justify-between mb-10">
+        <Typography.Title level={1}>
+          {' '}
+          View Dorayaki
+        </Typography.Title>
+      </section>
       <div>
         <Row gutter={12}>
           <Col xs={16} sm={12} >

@@ -20,7 +20,7 @@ const BaseLayout: React.FC<Props> = (props) => {
         }}
       >
         <Content>{props.children}</Content>
-        <Footer>Copyright © 2021 Widya Anugrah Putra. All rights reserved.</Footer>
+        <Footer>Created by Widya Anugrah Putra.</Footer>
       </Layout>
     </>
   );

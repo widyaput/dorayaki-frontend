@@ -10,6 +10,7 @@ interface IResponseData {
     total_items: number;
     page_index: number;
     sort: string;
+    total_pages: number;
     data: [];
 }
 
@@ -21,6 +22,5 @@ export const tableResponse = (data : IResponseData) : any => {
     pageSize: data.items_per_page,
     total: data.total_items,
   }
-
   return { tableData: data.data, pagination }
 }

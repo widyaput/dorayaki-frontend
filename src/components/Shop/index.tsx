@@ -1,7 +1,10 @@
 import React from 'react';
-import { Typography, Row, Col } from 'antd';
+import { Typography, Row, Col, Button } from 'antd';
+import { Link } from 'react-router-dom';
+
 import axios from '@/modules/axios';
 import ViewActions from '../View/ViewActions';
+import { MdViewList } from 'react-icons/md';
 
 interface Props {
   ID: number,
@@ -24,10 +27,20 @@ const ViewShop: React.FC<Props> = (props: Props) => {
   return (
     <>
     <div>
-      <Typography.Title level={1}>
-        {' '}
-        View Shop
-      </Typography.Title>
+      <section className="flex justify-between mb-10">
+        <Typography.Title level={1}>
+          {' '}
+          View Shop
+        </Typography.Title>
+        <div>
+          <Link to={`/shops/${props.ID}/stocks`}>
+            <Button type="primary" size="large">
+              <MdViewList size={16} />
+              View Shop&apos;s Stocks
+            </Button>
+          </Link>
+        </div>
+      </section>
       <div>
         <Row gutter={12}>
           <Col xs={16} sm={12}>

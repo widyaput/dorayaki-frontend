@@ -175,10 +175,12 @@ const DorayakiMutate: React.FC<Props> = (props: Props) => {
   return (
     <>
       <div>
-        <Typography.Title level={1}>
-          {' '}
-          {dorayakiValue.isAdd ? 'Add New' : 'Edit'} Dorayaki
-        </Typography.Title>
+        <section className="flex justify-between mb-10">
+          <Typography.Title level={1}>
+            {' '}
+            {dorayakiValue.isAdd ? 'Add New' : 'Edit'} Dorayaki
+          </Typography.Title>
+        </section>
         <Form layout="vertical" form={form}>
           <Row gutter={12}>
             <Col xs={16} sm={12}>

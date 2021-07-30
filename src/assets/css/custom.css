@@ -262,6 +262,9 @@ h1,
 .search-bar {
   margin-bottom: 10px;
 }
+
+.search-bar .ant-select-
+
 .search-bar .ant-input-group input {
   padding: 10px;
   border-radius: 5px;
@@ -314,6 +317,29 @@ h1,
 .event-action svg {
   margin-right: 0px !important;
 }
+
+div.c-wrapper{
+  width: 80%;
+  margin: auto;
+}
+
+.carousel-inner > .item > img, 
+.carousel-inner > .item > a > img{
+  margin: auto;
+  width: 200px;
+  height: 100px;
+}
+
+.pgdorayaki-details.ant-btn-primary {
+  background-color: #9cbc1a;
+  color: #fff;
+}
+
+.pgdorayaki-transfer.ant-btn-primary {
+  background-color: #1a9cbc;
+  color: #fff;
+}
+
 .event-edit.ant-btn-primary {
   background-color: #e8fbff;
   color: #206bc4;
@@ -348,6 +374,26 @@ h1,
 }
 .list-section-main p a {
   font-size: 1em;
+}
+
+.modal-form {
+  margin-bottom: 10px;
+}
+.modal-form .ant-modal-title {
+  font-weight: 600;
+}
+.modal-form .ant-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.modal-form .ant-select.ant-select-single.ant-select-show-arrow {
+  width: 100%;
+}
+
+.modal-label {
+  font-size: 13px;
+  margin-bottom: 5px;
 }
 
 @media (min-width: 768px) and (max-width: 900px) {

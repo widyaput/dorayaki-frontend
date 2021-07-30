@@ -3,6 +3,7 @@ import swr from 'swr';
 import { Alert, Button, Input, Table, Typography } from 'antd';
 import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
+import { CgDetailsMore } from 'react-icons/cg';
 
 import AuthLayout from '@/components/Layout/Auth';
 import { usePagination } from '@/hooks/usePagination';
@@ -75,7 +76,7 @@ const Shop: React.FC = () => {
           <React.Fragment key={index}>
             <div className="button-table-wrapper">
               <Link to={`/shops/${row.id}`}>
-                <Button type="primary">
+                <Button type="primary" icon={<CgDetailsMore/>}>
                   Details
                 </Button>
               </Link>

@@ -30,6 +30,7 @@ const Auth: React.FC<Props> = ({ children }) => {
     }
 
     getAuthenticatedStatus();
+    return () => {console.log()}
   }, []);
 
   if (loading)

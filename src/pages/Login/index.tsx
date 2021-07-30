@@ -34,7 +34,7 @@ const LoginPage: React.FC = () => {
       <div className="loginPage">
         {error && <Alert message="Error" description={error} type="error" showIcon closable />}
 
-        <img src="/images/hoobex-office-login.svg" className="loginLogo" />
+        <img src="/images/dorayaki-603502.ico" className="loginLogo" />
         <Card className="loginCard" bordered={false}>
           <PageHeader>
             <Typography.Title level={5} style={{textAlign: 'center'}}>
