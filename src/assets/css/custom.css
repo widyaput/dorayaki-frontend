@@ -88,9 +88,7 @@ body {
 .ant-btn svg {
   margin-right: 5px;
 }
-.round-img {
-  border-radius: 5px;
-}
+
 .img-thumbnail {
   width: 200px;
   height: 100px;
@@ -129,10 +127,11 @@ h1,
   justify-content: center;
   align-items: center;
   padding: 10px;
-  background-color: white;
+  background-color:#1a9cbc;
   border: 1.5px solid #dcdcdc;
   color: #262626;
   border-radius: 5px;
+  width: 100%;
 }
 .loginButton svg {
   margin: 0 0.4em;
@@ -282,19 +281,6 @@ h1,
   color: #206bc4;
 }
 
-/* Event */
-.event-section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-}
-.event-section-main b {
-  color: #656565;
-}
-.event-section-main p a {
-  font-size: 1em;
-}
 .button-table-wrapper {
   display: flex;
   align-items: center;
@@ -318,17 +304,6 @@ h1,
   margin-right: 0px !important;
 }
 
-div.c-wrapper{
-  width: 80%;
-  margin: auto;
-}
-
-.carousel-inner > .item > img, 
-.carousel-inner > .item > a > img{
-  margin: auto;
-  width: 200px;
-  height: 100px;
-}
 
 .pgdorayaki-details.ant-btn-primary {
   background-color: #9cbc1a;
@@ -348,22 +323,11 @@ div.c-wrapper{
   background-color: #ffeaef;
   color: #dd0000;
 }
-.event-publish.ant-btn-primary {
-  background-color: #9cbc1a;
-  color: #fff;
-}
-.event-unpublish.ant-btn-primary {
-  background-color: #dd0000;
-  color: #fff;
-}
 
 .w-full {
   width: 100%;
 }
 
-.input-error {
-  border: 1px solid red;
-}
 
 .text-red {
   color: red;
