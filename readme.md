@@ -57,7 +57,6 @@ yarn dev
 
 ## Features
 List of features ready and TODOs for future development
-* Pernah dideploy pada [url](https://office.dorayaki.wiwid.me/). Disetting menggunakan Github Actions.
 * Fitur search sekaligus paginasi pada dorayaki dan toko.
 * Fitur login layaknya CMS pada umumnya.
 * Desain yang konsisten
